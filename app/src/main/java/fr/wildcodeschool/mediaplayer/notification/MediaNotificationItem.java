@@ -3,6 +3,7 @@ package fr.wildcodeschool.mediaplayer.notification;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 
+
 public class MediaNotificationItem extends NotificationItem {
 
     private NotificationCompat.Action playAction;
