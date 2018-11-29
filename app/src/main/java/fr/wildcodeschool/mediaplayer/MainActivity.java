@@ -1,10 +1,13 @@
 package fr.wildcodeschool.mediaplayer;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
@@ -22,6 +25,25 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
   // Application Context is static in order to access it everywhere.
   private static Context appContext;
+
+  private static final String NOTIFICATION_MODE_PLAY = "NOTIFICATION_MODE_PLAY";
+  private static final String NOTIFICATION_MODE_PAUSE = "NOTIFICATION_MODE_PAUSE";
+  private static final String NOTIFICATION_MODE_RESET = "NOTIFICATION_MODE_RESET";
+
+  private MediaNotificationItem mediaNotificationItem;
+  private PushNotification<MediaNotificationItem> pushNotification;
+  private static final int notificationID = 1;
+
+  public static Intent getIntent(Context context, String action) {
+    Intent intent = getIntent(context);
+    intent.setAction(action);
+    return intent;
+  }
+
+  public static Intent getIntent(Context context) {
+    Intent intent = new Intent(context, MainActivity.class);
+    return intent;
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +82,55 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         mSeekBarHandler.postDelayed(this, SEEKBAR_DELAY);
       }
     };
+
+    pushNotification = new PushNotification<>(
+            (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE),
+            new MediaNotificationBuilder<>()
+    );
+
+    Intent iPlay = getIntent(this, NOTIFICATION_MODE_PLAY);
+    Intent iPause = getIntent(this, NOTIFICATION_MODE_PAUSE);
+    Intent iStop = getIntent(this, NOTIFICATION_MODE_RESET);
+
+    mediaNotificationItem = PushNotificationItem.getMediaPlayerItem(this,
+            PendingIntent.getActivity(this, 0, iPlay, PendingIntent.FLAG_UPDATE_CURRENT),
+            PendingIntent.getActivity(this, 0, iPause, PendingIntent.FLAG_UPDATE_CURRENT),
+            PendingIntent.getActivity(this, 0, iStop, PendingIntent.FLAG_UPDATE_CURRENT));
+  }
+
+  @Override
+  protected void onPause() {
+    pushNotification.show(this, notificationID, mediaNotificationItem);
+    super.onPause();
+  }
+
+  @Override
+  protected void onResume() {
+    pushNotification.cancel(notificationID);
+    super.onResume();
+  }
+
+  @Override
+  protected void onDestroy() {
+    pushNotification.cancelAll();
+    super.onDestroy();
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    if (intent.getAction() != null) {
+      onNotificationAction(intent.getAction());
+    }
+    super.onNewIntent(intent);
+  }
+
+  protected void onNotificationAction(String action) {
+    switch (action) {
+      case NOTIFICATION_MODE_PLAY: playMedia(null); break;
+      case NOTIFICATION_MODE_PAUSE: pauseMedia(null); break;
+      case NOTIFICATION_MODE_RESET: resetMedia(null); break;
+      default:
+    }
   }
 
   /**

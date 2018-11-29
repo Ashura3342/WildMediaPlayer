@@ -4,4 +4,10 @@
     <string name="pause">PAUSE</string>
     <string name="reset">RESET</string>
     <string name="song">http://hcmaslov.d-real.sci-nnov.ru/public/mp3/Queen/Queen%20\'Bohemian%20Rhapsody\'.mp3</string>
+    <string name="channelName">WildMediaPlayer</string>
+    <string name="channelDesc">Notification WildMediaPlayer</string>
+    <string name="defaultChannel">default Channel</string>
+    <string name="wildPlayer">wild player channel</string>
+    <string name="notification_title">Queen - Bohemian Rhapsody</string>
+    <string name="notification_desc">The Best Song</string>
 </resources>
