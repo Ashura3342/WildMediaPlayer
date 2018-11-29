@@ -1,4 +1,4 @@
-package fr.wildcodeschool.mediaplayer;
+package fr.wildcodeschool.mediaplayer.notification;
 
 import android.app.Notification;
 import android.content.Context;

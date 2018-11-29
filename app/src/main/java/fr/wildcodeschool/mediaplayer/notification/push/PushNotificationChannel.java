@@ -1,4 +1,7 @@
-package fr.wildcodeschool.mediaplayer;
+package fr.wildcodeschool.mediaplayer.notification.push;
+
+import fr.wildcodeschool.mediaplayer.R;
+import fr.wildcodeschool.mediaplayer.notification.NotificationChannel;
 
 public class PushNotificationChannel {
 

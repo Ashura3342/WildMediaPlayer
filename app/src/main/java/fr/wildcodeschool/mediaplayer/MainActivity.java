@@ -12,6 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
 
+import fr.wildcodeschool.mediaplayer.notification.MediaNotificationBuilder;
+import fr.wildcodeschool.mediaplayer.notification.MediaNotificationItem;
+import fr.wildcodeschool.mediaplayer.notification.PushNotification;
+import fr.wildcodeschool.mediaplayer.notification.push.PushNotificationItem;
+
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
   // Audio player
   private WildPlayer mPlayer = null;

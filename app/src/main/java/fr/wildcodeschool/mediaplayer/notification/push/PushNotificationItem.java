@@ -1,8 +1,11 @@
-package fr.wildcodeschool.mediaplayer;
+package fr.wildcodeschool.mediaplayer.notification.push;
 
 import android.app.PendingIntent;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
+
+import fr.wildcodeschool.mediaplayer.R;
+import fr.wildcodeschool.mediaplayer.notification.MediaNotificationItem;
 
 public class PushNotificationItem {
 

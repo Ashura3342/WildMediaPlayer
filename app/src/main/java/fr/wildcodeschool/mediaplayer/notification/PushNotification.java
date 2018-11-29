@@ -1,9 +1,13 @@
-package fr.wildcodeschool.mediaplayer;
+package fr.wildcodeschool.mediaplayer.notification;
 
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+
+import fr.wildcodeschool.mediaplayer.notification.INotificationBuilder;
+import fr.wildcodeschool.mediaplayer.notification.NotificationChannel;
+import fr.wildcodeschool.mediaplayer.notification.NotificationItem;
 
 public class PushNotification<I extends NotificationItem> {
     private NotificationManager notificationManager;

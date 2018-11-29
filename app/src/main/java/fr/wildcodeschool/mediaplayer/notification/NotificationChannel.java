@@ -1,4 +1,4 @@
-package fr.wildcodeschool.mediaplayer;
+package fr.wildcodeschool.mediaplayer.notification;
 
 public class NotificationChannel {
 

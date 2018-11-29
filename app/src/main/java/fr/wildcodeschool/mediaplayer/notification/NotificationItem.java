@@ -1,6 +1,8 @@
-package fr.wildcodeschool.mediaplayer;
+package fr.wildcodeschool.mediaplayer.notification;
 
 import android.content.Context;
+
+import fr.wildcodeschool.mediaplayer.notification.NotificationChannel;
 
 public class NotificationItem {
     private NotificationChannel channel;
